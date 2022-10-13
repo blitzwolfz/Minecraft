@@ -38,3 +38,7 @@ cmake-build-release-visual-studio/
 cmake-build-debug-visual-studio/
 
 .idea/
+
+release/
+
+debug/
