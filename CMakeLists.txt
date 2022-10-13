@@ -1,8 +1,14 @@
 cmake_minimum_required(VERSION 3.23)
 
-if(${CMAKE_VERSION} VERSION_LESS 3.12)
+if(${CMAKE_VERSION} VERSION_LESS 3.23)
     cmake_policy(VERSION ${CMAKE_MAJOR_VERSION}.${CMAKE_MINOR_VERSION})
 endif()
+
+if(NOT CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE Release)
+endif()
+
+set(CMAKE_CXX_FLAGS_RELEASE "-O3")
 
 message(${CMAKE_CURRENT_SOURCE_DIR})
 
@@ -20,6 +26,8 @@ include_directories(./libraries/include)
 set(SOURCE_FILES ./src/main.cpp ./src/glad.c)
 
 add_executable(Minecraft ${SOURCE_FILES})
+
+# For future use for cross comp
 if (WIN32)
     add_library(glfw3 STATIC IMPORTED)
     add_library(glfw3::glfw3 ALIAS glfw3)
